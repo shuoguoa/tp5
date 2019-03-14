@@ -13,7 +13,7 @@ Route::get('think', function () {
     return 'hello,ThinkPHP5!';
 });
 
-Route::resource('test/:id', 'user/read');
+Route::resource('test/:id', 'index/user');
 
 Route::get('hello/:name', 'index/hello');
 
