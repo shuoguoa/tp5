@@ -7,9 +7,9 @@
  */
 
 namespace app\admin\controller;
-use think\Controller;
 
-class User extends Controller
+
+class User
 {
     public function hello()
     {
@@ -18,7 +18,7 @@ class User extends Controller
 
     public function index()
     {
-        echo 78945;exit;
+        echo 1111;exit;
     }
 
     public function read($id)
