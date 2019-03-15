@@ -1,5 +1,5 @@
 <?php
-Route::resource('qqq/:id', 'admin/user');
+Route::resource('ert/:id', 'admin/user');
 
 
 
