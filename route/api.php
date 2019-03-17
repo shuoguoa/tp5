@@ -1,5 +1,5 @@
 <?php
-Route::resource('uuu/:id', 'admin/user');
+Route::resource('blog', 'admin/blog');
 
 
 
