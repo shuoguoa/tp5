@@ -123,7 +123,6 @@ return [
     // 全局请求缓存排除规则
     'request_cache_except'   => [],
     // 是否开启路由缓存
-    //开启后，会自动对每次的路由请求的调度进行缓存，第二次如果是相同的请求则无需再次经过路由解析，而是直接进行请求调度
     'route_check_cache'      => false,
     // 路由缓存的Key自定义设置（闭包），默认为当前URL和请求类型的md5
     'route_check_cache_key'  => '',
@@ -143,6 +142,5 @@ return [
     'show_error_msg'         => false,
     // 异常处理handle类 留空使用 \think\exception\Handle
     'exception_handle'       => '',
-
 
 ];
