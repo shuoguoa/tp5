@@ -9,7 +9,7 @@
 namespace app\index\controller;
 
 
-class User extends
+class User extends Conteoller
 {
     public function hello($name = 'ThinkPHP5')
     {
