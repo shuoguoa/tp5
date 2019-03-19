@@ -14,5 +14,12 @@
 // +----------------------------------------------------------------------
 return [
     // 内置Html Console 支持扩展
-    'type' => 'Html',
+    'type' => 'console', // 使用浏览器console输出trace信息'type'  =>  'console',默认'type' => 'Html'
+    'trace_tabs' =>  [
+        'base'=>'基本',
+        'file'=>'文件',
+        'error|notice|warning'=>'错误',
+        'sql'=>'SQL',
+        'user'=>'用户'
+    ]
 ];

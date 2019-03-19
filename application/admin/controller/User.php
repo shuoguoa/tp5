@@ -13,7 +13,9 @@ use think\facade\Cache;
 use app\facade\Test;
 use think\Facade;
 use think\facade\Log;
-use think\Facade\Config;
+use think\facade\Config;
+use think\facade\Debug; //用于性能测试，调试某段代码的运行时间和内存占用开销
+use app\model\admin\AuthRule;
 
 class User extends Controller
 {
@@ -31,17 +33,24 @@ class User extends Controller
         // 抛出自定义异常, 运用助手函数helper.php 中定义的
         //exception('测试一下异常，哈哈哈', 88899);
         //var_dump(Config::get()['template']);exit;
-        echo 123456;
+        //echo 123456;
         //Log::write(time().'访问'.$_SERVER['PHP_SELF']);
         //Log::record('测试日志信息');
-        //$rr = Log::write('测试日志信息，错误日志提示','error');
+        Debug::remark('begin'); //于此对应的系统给出了debug('begin')助手函数
+        $rr = Log::write('测试日志信息，错误日志提示','error');
+        //Debug::remark('end');
+        //echo Debug::getRangeTime('begin', 'end').'s'.'<br/>'; //运行时间
+        //echo Debug::getRangeMem('begin','end'); //占用的内存开销
+        //exit;
     }
 
 
     //
     public function hello()
     {
-
+        $model = new AuthRule();
+        $res = $model->getAuthRule();
+        var_dump($res);exit;
 //        $this->fetch('admin/user');
 //        echo 8888;exit;
         //这里的../template/public目录是相对于当前项目入口文件位置
