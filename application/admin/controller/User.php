@@ -12,6 +12,8 @@ use app\common\Error;
 use think\facade\Cache;
 use app\facade\Test;
 use think\Facade;
+use think\facade\Log;
+use think\Facade\Config;
 
 class User extends Controller
 {
@@ -24,17 +26,31 @@ class User extends Controller
     /**
      * 我是控制器初始化方法，执行此控制器的任何操作之前必须先执行我
      */
-    public function _initialize()
+    protected  function initialize()
     {
-        echo 123456;exit;
-        Logs::write(time().'访问'.$_SERVER['PHP_SELF']);
+        // 抛出自定义异常, 运用助手函数helper.php 中定义的
+        //exception('测试一下异常，哈哈哈', 88899);
+        //var_dump(Config::get()['template']);exit;
+        echo 123456;
+        //Log::write(time().'访问'.$_SERVER['PHP_SELF']);
+        //Log::record('测试日志信息');
+        //$rr = Log::write('测试日志信息，错误日志提示','error');
     }
 
 
     //
     public function hello()
     {
-//        $this->error('错误跳转的函数测试');
+
+//        $this->fetch('admin/user');
+//        echo 8888;exit;
+        //这里的../template/public目录是相对于当前项目入口文件位置
+        //这里的fetch() 需要引用 think\Controller
+        echo 3445;
+        return $this->fetch('public/menu');exit;
+        $this->fetch('../template/public/menu.html');
+        exit;
+         //$this->error('错误跳转的函数测试');
         //相同模块下其他控制器方法的调用
         $city = controller('City');
         echo $city->showCity('夏天，海边，不穿鞋').'<br/>';
