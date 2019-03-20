@@ -29,3 +29,8 @@ Route::get('hello', 'admin/user/hello');
 Route::get('city', 'admin/user/city');
 
 Route::get('test', 'admin/');
+
+Route::get('uindex', 'admin/user/index');
+
+Route::get('verify', 'admin/user/verify');
+

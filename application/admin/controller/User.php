@@ -16,6 +16,8 @@ use think\facade\Log;
 use think\facade\Config;
 use think\facade\Debug; //用于性能测试，调试某段代码的运行时间和内存占用开销
 use app\model\admin\AuthRule;
+use app\common\validate\ValidateRule as ValidateRule;
+use think\facade\Session;
 
 class User extends Controller
 {
@@ -44,15 +46,20 @@ class User extends Controller
         //exit;
     }
 
-
-    //
     public function hello()
     {
         $model = new AuthRule();
         $res = $model->getAuthRule();
-        var_dump($res);exit;
-//        $this->fetch('admin/user');
-//        echo 8888;exit;
+//        var_dump($res);exit;
+        // 把分页数据赋值给模板变量list
+        //$this->assign('list', $list);
+        //// 渲染模板输出
+        //return $this->fetch();
+
+
+
+         return $this->fetch('admin/user');
+        //echo 8888;exit;
         //这里的../template/public目录是相对于当前项目入口文件位置
         //这里的fetch() 需要引用 think\Controller
         echo 3445;
@@ -69,7 +76,6 @@ class User extends Controller
         $error_obj = new Error;
         echo $error_obj->test('吼哈吼哈').'<br/>';
 
-//echo 22344;exit;
         //无需进行实例化就可以方便的进行方法调用
         //Facade功能可以让类无需实例化而直接进行静态方式调用。
 
@@ -85,6 +91,45 @@ class User extends Controller
         echo Test::hehe('thinkphp').'<br/>';
 
         return 'hello,hhahaha';
+    }
+
+    public function verify(){
+
+        $config =    [
+            // 验证码字体大小
+            'fontSize'    =>    30,
+            // 验证码位数
+            'length'      =>    3,
+            // 关闭验证码杂点
+            'useNoise'    =>    false,
+        ];
+        $captcha = new Captcha($config);
+        var_dump($captcha->entry());exit;
+    }
+    public function index()
+    {
+        $data = [
+            'name'  => 'think',
+            'email' => 't1111qq@ww.com',
+            'age'   => 80,
+        ];
+        $result = $this->validate($data,'ValidateRule');
+//        if (true !== $result) {
+//            // 验证失败 输出错误信息
+//            dump($result);
+//        }
+
+        $validate = new ValidateRule;
+
+        if (!$validate->scene('edit')->check($data)) {
+            dump($validate->getError());
+        }
+
+//        Session::set('name','thinkphp');
+//        $e = Session::get('name');
+//        dump($e);exit;
+        session('name', 'j=hahha ');
+        echo session('name');
     }
 
     public function _empty($name){
@@ -111,11 +156,6 @@ class User extends Controller
 
     public function data(){
         echo 'data<br/>';
-    }
-
-    public function index()
-    {
-        echo 1111;exit;
     }
 
     public function read($id)

@@ -16,8 +16,9 @@ class AuthRule extends Model
     protected $connection = 'db_config';
 
     public function  getAuthRule(){
-        $res = AuthRule::where('type', '=', 1)->select();
-        return $res;
+        $res = AuthRule::where('type', '=', 1)->paginate(4);
+        $count = $res->total();
+        return [$res, $count];
     }
 
     public function addAuthRule(){
