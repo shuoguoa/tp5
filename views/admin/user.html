@@ -6,7 +6,14 @@
 </head>
 <body>
  user.html 测试 {$Think.PHP_VERSION}
- <div>{:captcha_img()}</div>
- <div><img src="{:captcha_src()}" alt="captcha" /></div>
+
+ <div class="form-group">
+   <label>验证码</label>
+   <input type="text" placeholder="请输入验证码" class="form-control" name="captcha">
+   <img src="{:captcha_src()}" alt="captcha" onclick="javascript:this.src='{:captcha_src()}?tm='+Math.random();" style="cursor: pointer"/>
+ </div>
+
 </body>
 </html>
+
+

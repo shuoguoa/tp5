@@ -34,3 +34,7 @@ Route::get('uindex', 'admin/user/index');
 
 Route::get('verify', 'admin/user/verify');
 
+Route::get('login', 'admin/login/verify');
+
+
+
