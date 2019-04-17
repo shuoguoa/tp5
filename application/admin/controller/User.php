@@ -32,6 +32,7 @@ class User extends Controller
      */
     protected  function initialize()
     {
+
         // 抛出自定义异常, 运用助手函数helper.php 中定义的
         //exception('测试一下异常，哈哈哈', 88899);
         //var_dump(Config::get()['template']);exit;
@@ -46,10 +47,31 @@ class User extends Controller
         //exit;
     }
 
+    public function money()
+    {
+        $total=20;//总金额
+        $num=10;// 分成10个，支持10人随机领取
+        $min=0.01;//每个人最少能收到0.01元
+
+        for ($i=1;$i<$num;$i++)
+        {
+            $safe_total=($total-($num-$i)*$min)/($num-$i);//随机安全上限
+            $money=mt_rand($min*100,$safe_total*100)/100;
+            $total=$total-$money;
+
+            echo '第'.$i.'个：'.$money.' 元，剩余：'.$total.' 元 '.'<br/>';
+        }
+        echo '第'.$num.'个：'.$total.' 元，剩余：0 元'.'<br/>';
+    }
+
+
     public function hello()
     {
         $model = new AuthRule();
         $res = $model->getAuthRule();
+
+        $rr =  new \test();
+        echo $re = $rr->index();
 //        var_dump($res);exit;
         // 把分页数据赋值给模板变量list
         //$this->assign('list', $list);

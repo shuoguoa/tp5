@@ -36,5 +36,8 @@ Route::get('verify', 'admin/user/verify');
 
 Route::get('login', 'admin/login/verify');
 
+Route::get('money', 'admin/user/money');
+
+
 
 
